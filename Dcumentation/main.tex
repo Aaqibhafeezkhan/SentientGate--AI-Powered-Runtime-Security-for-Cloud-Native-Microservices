@@ -1,0 +1,566 @@
+\documentclass[12pt, a4paper]{article}
+
+% ─── Core Packages ────────────────────────────────────────────────────────────
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=2.4cm, top=2.8cm, bottom=2.8cm, headheight=25pt]{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{mdframed}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{fancyhdr}
+\usepackage{microtype}
+\usepackage{listings}
+\usepackage{tcolorbox}
+\usepackage{tabularx}
+\usepackage{colortbl}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{setspace}
+\usepackage{caption}
+\usepackage{subcaption}
+\tcbuselibrary{listings, breakable, skins, most}
+
+% ─── Color Palette ────────────────────────────────────────────────────────────
+\definecolor{bgbase}{HTML}{0D1117}
+\definecolor{bgsurface}{HTML}{161B22}
+\definecolor{bgelevated}{HTML}{1C2128}
+\definecolor{bordercolor}{HTML}{30363D}
+\definecolor{textprimary}{HTML}{E6EDF3}
+\definecolor{textmuted}{HTML}{7D8590}
+\definecolor{accentteal}{HTML}{00C9B0}
+\definecolor{accentamber}{HTML}{F59E0B}
+\definecolor{accentred}{HTML}{EF4444}
+\definecolor{accentblue}{HTML}{58A6FF}
+\definecolor{accentpurple}{HTML}{A78BFA}
+\definecolor{criticalred}{HTML}{DC2626}
+\definecolor{highorange}{HTML}{EA580C}
+\definecolor{mediumyellow}{HTML}{CA8A04}
+\definecolor{lowgreen}{HTML}{16A34A}
+\definecolor{lightgray}{HTML}{F3F4F6}
+\definecolor{darkgray}{HTML}{374151}
+\definecolor{midgray}{HTML}{6B7280}
+\definecolor{codebg}{HTML}{1E2936}
+\definecolor{codeborder}{HTML}{2D3F50}
+
+% ─── Hyperref Setup ───────────────────────────────────────────────────────────
+\hypersetup{
+    colorlinks=true,
+    linkcolor=accentteal,
+    urlcolor=accentblue,
+    citecolor=accentpurple,
+    pdftitle={SentientGate — Complete Architectural and Operational Report},
+    pdfauthor={Shrihari R. Kulkarni},
+    pdfsubject={AI-Powered Runtime Security Fabric for Cloud-Native Microservices},
+    bookmarksopen=true,
+    bookmarksnumbered=true,
+}
+
+% ─── Header / Footer ──────────────────────────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.3pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{accentteal!60}\leaders\hrule height\headrulewidth\hfill}}
+\renewcommand{\footrule}{\hbox to\headwidth{\color{bordercolor}\leaders\hrule height\footrulewidth\hfill}}
+\fancyhead[L]{\small\color{midgray}\texttt{SentientGate} \textcolor{bordercolor}{|} \color{midgray}System Documentation}
+\fancyhead[R]{\small\color{midgray}Shrihari R. Kulkarni}
+\fancyfoot[C]{\small\color{midgray}\thepage}
+\fancyfoot[R]{\small\color{midgray}\texttt{v2.0 — 2026}}
+
+% ─── Section Formatting ───────────────────────────────────────────────────────
+\titleformat{\section}
+    {\Large\bfseries\color{darkgray}}
+    {\color{accentteal}\S\thesection\;}
+    {0em}
+    {}
+    [\vspace{2pt}\textcolor{accentteal!40}{\rule{\linewidth}{1.5pt}}]
+
+\titleformat{\subsection}
+    {\normalsize\bfseries\color{darkgray}}
+    {\color{accentteal!80}\thesubsection\;}
+    {0em}
+    {}
+    [\vspace{1pt}\textcolor{bordercolor}{\rule{0.5\linewidth}{0.5pt}}]
+
+\titleformat{\subsubsection}
+    {\small\bfseries\color{midgray}}
+    {\thesubsubsection\;}
+    {0em}
+    {}
+
+\titlespacing*{\section}{0pt}{22pt}{10pt}
+\titlespacing*{\subsection}{0pt}{14pt}{6pt}
+\titlespacing*{\subsubsection}{0pt}{10pt}{4pt}
+
+% ─── Code Listings ────────────────────────────────────────────────────────────
+\lstdefinestyle{javacode}{
+    backgroundcolor=\color{codebg},
+    basicstyle=\footnotesize\ttfamily\color{textprimary},
+    keywordstyle=\color{accentblue}\bfseries,
+    stringstyle=\color{accentteal},
+    commentstyle=\color{textmuted}\itshape,
+    numberstyle=\tiny\color{textmuted},
+    numbers=left,
+    numbersep=8pt,
+    frame=single,
+    framerule=0.5pt,
+    rulecolor=\color{codeborder},
+    breaklines=true,
+    tabsize=4,
+    showstringspaces=false,
+    language=Java,
+    xleftmargin=12pt,
+    xrightmargin=4pt,
+    aboveskip=8pt,
+    belowskip=8pt,
+}
+
+\lstdefinestyle{yamlcode}{
+    backgroundcolor=\color{codebg},
+    basicstyle=\footnotesize\ttfamily\color{textprimary},
+    keywordstyle=\color{accentamber}\bfseries,
+    stringstyle=\color{accentteal},
+    commentstyle=\color{textmuted}\itshape,
+    numberstyle=\tiny\color{textmuted},
+    numbers=left,
+    numbersep=8pt,
+    frame=single,
+    framerule=0.5pt,
+    rulecolor=\color{codeborder},
+    breaklines=true,
+    tabsize=2,
+    showstringspaces=false,
+    xleftmargin=12pt,
+    xrightmargin=4pt,
+    aboveskip=8pt,
+    belowskip=8pt,
+}
+
+\lstdefinestyle{bashcode}{
+    backgroundcolor=\color{codebg},
+    basicstyle=\footnotesize\ttfamily\color{textprimary},
+    keywordstyle=\color{accentamber},
+    stringstyle=\color{accentteal},
+    commentstyle=\color{textmuted}\itshape,
+    numberstyle=\tiny\color{textmuted},
+    numbers=none,
+    frame=single,
+    framerule=0.5pt,
+    rulecolor=\color{codeborder},
+    breaklines=true,
+    tabsize=2,
+    showstringspaces=false,
+    xleftmargin=12pt,
+    xrightmargin=4pt,
+    aboveskip=8pt,
+    belowskip=8pt,
+}
+
+% ─── Custom Boxes ─────────────────────────────────────────────────────────────
+\tcbset{
+    criticalbox/.style={
+        colback=criticalred!8,
+        colframe=criticalred,
+        fonttitle=\bfseries\small,
+        title={[\textbf{!}] CRITICAL NOTICE},
+        boxrule=1pt,
+        arc=2pt,
+        left=8pt, right=8pt, top=6pt, bottom=6pt,
+        breakable,
+    },
+    solutionbox/.style={
+        colback=accentteal!5,
+        colframe=accentteal,
+        fonttitle=\bfseries\small\color{darkgray},
+        title={[\textbf{*}] ARCHITECTURAL CAPABILITY},
+        boxrule=1pt,
+        arc=2pt,
+        left=8pt, right=8pt, top=6pt, bottom=6pt,
+        breakable,
+    },
+    infobox/.style={
+        colback=accentblue!5,
+        colframe=accentblue,
+        boxrule=1pt,
+        arc=2pt,
+        left=8pt, right=8pt, top=6pt, bottom=6pt,
+        breakable,
+    },
+    flawbox/.style={
+        colback=lightgray,
+        colframe=bordercolor,
+        boxrule=0.7pt,
+        arc=2pt,
+        left=8pt, right=8pt, top=6pt, bottom=6pt,
+        breakable,
+    },
+}
+
+% ─── Custom Commands ──────────────────────────────────────────────────────────
+\newcommand{\tech}[1]{\texttt{\color{accentblue}#1}}
+\newcommand{\service}[1]{\texttt{\color{accentteal}#1}}
+\newcommand{\keyword}[1]{\textbf{\color{accentamber}#1}}
+\newcommand{\critical}[1]{\textbf{\color{criticalred}#1}}
+\newcommand{\low}[1]{\textbf{\color{lowgreen}#1}}
+
+\renewcommand{\arraystretch}{1.35}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
+% ─────────────────────────────────────────────────────────────────────────────
+%  DOCUMENT BEGIN
+% ─────────────────────────────────────────────────────────────────────────────
+\begin{document}
+
+% ════════════════════════════════════════════════════════
+%  TITLE PAGE
+% ════════════════════════════════════════════════════════
+\begin{titlepage}
+    \thispagestyle{empty}
+    \centering
+    \vspace*{1.5cm}
+
+    \textcolor{accentteal}{\rule{0.15\linewidth}{3pt}}
+    \textcolor{bordercolor}{\rule{0.7\linewidth}{1pt}}
+    \textcolor{accentteal}{\rule{0.15\linewidth}{3pt}}
+
+    \vspace{1.2cm}
+
+    {\fontsize{36}{44}\selectfont\bfseries\color{darkgray} SentientGate\par}
+    \vspace{0.3cm}
+    {\large\color{accentteal}\texttt{AI-Powered Runtime Security Fabric for Cloud-Native Microservices}\par}
+
+    \vspace{0.8cm}
+    \textcolor{bordercolor}{\rule{0.6\linewidth}{0.5pt}}
+    \vspace{0.8cm}
+
+    \begin{minipage}{0.88\linewidth}
+        \centering
+        {\normalsize\color{midgray}
+        A resilient, distributed security mesh engineered to sit at the microservice edge,
+        providing sub-millisecond request enforcement, out-of-band Kafka telemetry streaming,
+        binary gRPC log analysis, heuristic strategy engines, and on-premise LLM anomaly detection.
+        \par}
+    \end{minipage}
+
+    \vspace{1.2cm}
+
+    % Tech Stack Badges
+    \begin{center}
+        \colorbox{accentblue!15}{\small\color{accentblue}\texttt{ Java 21 }}
+        \colorbox{accentteal!15}{\small\color{accentteal}\texttt{ Spring WebFlux }}
+        \colorbox{accentamber!15}{\small\color{accentamber}\texttt{ Apache Kafka }}
+        \colorbox{accentred!10}{\small\color{accentred}\texttt{ Redis 7 }}
+        \colorbox{accentpurple!15}{\small\color{accentpurple}\texttt{ Ollama LLM }}
+        \colorbox{darkgray!10}{\small\color{darkgray}\texttt{ gRPC }}
+        \colorbox{lowgreen!15}{\small\color{lowgreen}\texttt{ PostgreSQL 16 }}
+        \colorbox{accentblue!15}{\small\color{accentblue}\texttt{ React 18 }}
+        \colorbox{accentteal!15}{\small\color{accentteal}\texttt{ Kubernetes / Helm }}
+        \colorbox{accentamber!15}{\small\color{accentamber}\texttt{ Terraform EKS }}
+    \end{center}
+
+    \vspace{1.5cm}
+
+    \begin{tcolorbox}[
+        colback=bgelevated!30,
+        colframe=bordercolor,
+        boxrule=0.7pt,
+        arc=3pt,
+        width=0.82\linewidth,
+        halign=center,
+        left=10pt, right=10pt, top=8pt, bottom=8pt,
+    ]
+        \centering
+        \small\color{midgray}
+        \textsc{System Architecture \& Technical Scenarios Report}\\[4pt]
+        \textbf{\color{darkgray}Edge Enforcement \textbullet\; Concurrency Isolation \textbullet\; Threat Strategies \textbullet\; Local AI \textbullet\; Cloud Infrastructure}
+    \end{tcolorbox}
+
+    \vfill
+
+    \begin{tabular}{rl}
+        \textcolor{midgray}{\small Author:}     & \textbf{Shrihari R. Kulkarni} \\[4pt]
+        \textcolor{midgray}{\small Version:}    & \texttt{2.0 (Production Release)} \\[4pt]
+        \textcolor{midgray}{\small License:}    & Apache 2.0 \\[4pt]
+        \textcolor{midgray}{\small Repository:} & \texttt{SentientGate--AI-Powered-Runtime-Security} \\
+    \end{tabular}
+
+    \vspace{1cm}
+    \textcolor{accentteal}{\rule{0.15\linewidth}{3pt}}
+    \textcolor{bordercolor}{\rule{0.7\linewidth}{1pt}}
+    \textcolor{accentteal}{\rule{0.15\linewidth}{3pt}}
+\end{titlepage}
+
+% ════════════════════════════════════════════════════════
+%  TABLE OF CONTENTS
+% ════════════════════════════════════════════════════════
+\newpage
+\tableofcontents
+\thispagestyle{fancy}
+\newpage
+
+% ════════════════════════════════════════════════════════
+%  PART I: EXECUTIVE OVERVIEW
+% ════════════════════════════════════════════════════════
+\section{Executive Summary \& System Scenarios}
+
+\subsection{The Architectural Vision}
+
+Modern cloud-native microservice fabrics face a critical architectural challenge: traditional Web Application Firewalls (WAFs) operate on static regular expressions that fail against dynamic zero-day attacks, distributed enumeration, and API logic abuse. Conversely, cloud-hosted AI security solutions introduce hundreds of milliseconds of network latency directly into the critical HTTP request loop and expose private corporate telemetry to external third parties.
+
+\textbf{SentientGate} eliminates this compromise. It is an autonomous runtime security fabric designed to be deployed directly in front of microservice topologies. By decoupling immediate traffic routing from heavy threat evaluation via an **Out-of-Band (OOB) event-driven architecture**, SentientGate achieves:
+
+\begin{itemize}[leftmargin=*, itemsep=4pt]
+    \item \textbf{Sub-Millisecond Edge Enforcement ($<$1ms):} Clean requests pass through the Spring Cloud Gateway without perceptible latency, while Redis in-memory lookups immediately drop blacklisted actors with \texttt{403 Forbidden}.
+    \item \textbf{Asynchronous Kafka Telemetry:} Complete audit logging and security anomaly alerts are published to Apache Kafka (\texttt{USER\_LOGS} and \texttt{SECURITY\_EVENTS}) out-of-band.
+    \item \textbf{Cryptographic Visitor Fingerprinting:} Tamper-proof HMAC-SHA256 signed HTTP-only cookies prevent malicious clients from resetting their tracking identities.
+    \item \textbf{Isolated Concurrency Pipelines:} Synchronous heuristic strategies run on a high-throughput thread pool (\texttt{analysisExecutor}), completely separated from slow AI inference calls (\texttt{aiExecutor}).
+    \item \textbf{Local, Zero-Egress LLM Inference:} Integrates with on-premise \tech{Ollama} running open-source models (\texttt{gemma3.2}, \texttt{llama3}, \texttt{qwen2.5}), guaranteeing that zero customer data leaves private infrastructure.
+    \item \textbf{Dynamic TTL Blacklisting:} Mitigates false-positive impacts by applying dynamic, severity-calibrated Time-To-Live expiration keys in Redis (5m, 15m, 60m).
+    \item \textbf{Turnkey Cloud-Native Orchestration:} Fully packaged with Kubernetes Helm charts (\texttt{k8s/}), Terraform AWS EKS Infrastructure as Code (\texttt{terraform/}), and automated multi-architecture Docker CI/CD pipelines.
+\end{itemize}
+
+\subsection{Production Service Inventory}
+
+\begin{center}
+\begin{tabular}{L{3.2cm} L{6.8cm} C{2.2cm}}
+\toprule
+\rowcolor{lightgray!60}
+\textbf{Service} & \textbf{Core Role \& Architecture} & \textbf{Port} \\
+\midrule
+\service{ApiGateway}      & Reactive reverse proxy (WebFlux), HMAC visitor signing, Redis rate-limiting and blacklist filtering & \texttt{8080} / \texttt{8079} \\
+\service{MCPService}      & Malicious Client Protection engine; multi-strategy evaluation, gRPC client, isolated thread pools & \texttt{9991} \\
+\service{AIService}       & Non-blocking WebFlux service querying local Ollama LLMs for behavioral anomaly scoring & \texttt{8082} \\
+\service{LoggingService}  & Dual-tier log consumer (PostgreSQL + Redis cache), gRPC Protobuf history server, metrics REST API & \texttt{8010} / \texttt{9090} \\
+\service{EurekaServer}    & Netflix Eureka registry for dynamic discovery and client-side load balancing & \texttt{8761} \\
+\service{DummyService}    & Protected downstream service demonstrating traffic routing and security enforcement & \texttt{8090} \\
+\service{sentinel-ui}     & Real-time React 18 / Vite / Tailwind monitoring dashboard with live pipeline visualization & \texttt{5173} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% ════════════════════════════════════════════════════════
+%  PART II: ARCHITECTURE & CONCURRENCY
+% ════════════════════════════════════════════════════════
+\newpage
+\section{End-to-End Architectural Lifecycle}
+
+\subsection{Request \& Threat Detection Lifecycle}
+
+\begin{enumerate}[leftmargin=*, itemsep=5pt]
+    \item \textbf{Ingress \& Identity Resolution:} The client request hits \service{ApiGateway}. \tech{VisitorIdFilter} inspects the \texttt{SENTINEL\_VISITOR\_ID} cookie. If absent or invalid, it cryptographically signs a new UUID with HMAC-SHA256 and sets a secure HTTP-only cookie.
+    \item \textbf{In-Memory Blacklist Interception:} \tech{BlacklistFilter} performs a non-blocking reactive check against Redis: \texttt{blacklist:\{uuid\}}. If present, the gateway immediately returns \texttt{403 Forbidden}.
+    \item \textbf{Rate Limiting \& Upstream Forwarding:} The gateway evaluates Redis Token Bucket rate limits (\texttt{RequestRateLimiter}) and routes clean traffic to the target microservice (e.g., \service{DummyService}).
+    \item \textbf{Out-of-Band Audit Telemetry:} \tech{SentientGateFilter} captures request latency and status code, publishing a \tech{LogEvent} to Kafka topic \texttt{USER\_LOGS}.
+    \item \textbf{Security Event Triggering:} If the response status is an error ($4xx$ or $5xx$), a \tech{SecurityAlertEvent} is simultaneously dispatched to Kafka topic \texttt{SECURITY\_EVENTS}.
+    \item \textbf{Dual Ingestion in LoggingService:} Two independent Kafka consumers process \texttt{USER\_LOGS}:
+    \begin{itemize}[noitemsep]
+        \item \tech{RedisLogConsumer}: Caches the log into Redis list \texttt{log:recent:\{uuid\}} in $\sim$1ms.
+        \item \tech{DatabaseLogConsumer}: Flushes records in batches into PostgreSQL for permanent audit trails.
+    \end{itemize}
+    \item \textbf{Batch Consumption \& Deduplication in MCPService:} \service{MCPService} consumes \texttt{SECURITY\_EVENTS} in batches, groups alerts by client UUID, and filters out duplicates via \tech{RedisGuardService} using atomic Redis \texttt{SETNX} keys.
+    \item \textbf{Fast Binary gRPC History Retrieval:} \service{MCPService} calls \service{LoggingService} over a high-speed gRPC Protobuf stream (\texttt{user\_log\_event.proto}), pulling the client's past 10 minutes of activity.
+    \item \textbf{Layered Synchronous Strategy Execution:} Offloaded to the \texttt{analysisExecutor} pool, heuristics run in strict priority order (Pattern Match, Sensitive Path, Rate-Limit Cooldown, High Error Rate, Burst Traffic).
+    \item \textbf{Asynchronous LLM Anomaly Scoring:} If heuristics do not trigger a block, the event history is dispatched to the \texttt{aiExecutor} pool, triggering \service{AIService} which prompts local Ollama LLMs.
+    \item \textbf{Dynamic Enforcement Execution:} If malicious intent is established, \service{MCPService} writes a JSON block record to Redis with an automated TTL, instantly blocking the client from the entire microservice ecosystem.
+\end{enumerate}
+
+\subsection{Concurrency \& Thread Isolation Model}
+
+To guarantee resilience under heavy DDoS attack scenarios, SentientGate combines reactive event loops with strictly partitioned worker pools:
+
+\begin{tcolorbox}[solutionbox]
+\textbf{1. Gateway \& AI Layer (Netty Event Loops):}
+Both \service{ApiGateway} and \service{AIService} are built on Spring WebFlux. They operate on non-blocking Netty event loops without allocating a thread per connection. I/O operations (Redis checks, Kafka producer dispatches, and HTTP calls) never block thread execution.
+
+\textbf{2. Security Engine Isolation (\service{MCPService}):}
+Defined in \tech{AsyncConfig.java}, two dedicated thread pools isolate workloads:
+\begin{itemize}[noitemsep]
+    \item \texttt{analysisExecutor} (Core: 8, Max: 16, Queue: 256): Executes fast heuristic rules. Equipped with \texttt{CallerRunsPolicy} to apply natural backpressure to Kafka consumers if saturated.
+    \item \texttt{aiExecutor} (Core: 4, Max: 8, Queue: 128): Dedicated strictly to asynchronous Ollama LLM requests. Ensures slow or stuttering AI models never starve rule analysis.
+\end{itemize}
+\end{tcolorbox}
+
+% ════════════════════════════════════════════════════════
+%  PART III: MICROSERVICE DEEP-DIVE
+% ════════════════════════════════════════════════════════
+\newpage
+\section{Microservice Component Specifications}
+
+\subsection{ApiGateway: Non-Blocking Edge Mesh}
+
+\service{ApiGateway} is the single entry point for all external traffic. It provides intelligent routing, authentication verification, cryptographic tracking, and edge blocking.
+
+\subsubsection{Filter Chain Execution Order}
+\begin{center}
+\begin{tabular}{C{1.5cm} L{4.5cm} L{7.5cm}}
+\toprule
+\rowcolor{lightgray!60}
+\textbf{Order} & \textbf{Filter Component} & \textbf{Operational Function} \\
+\midrule
+1 & \tech{VisitorIdFilter} & Generates / validates HMAC-SHA256 signed cookie \texttt{SENTINEL\_VISITOR\_ID}; mutates exchange with validated UUID header \\
+2 & \tech{BlacklistFilter} & Checks Redis key \texttt{blacklist:\{uuid\}}; returns \texttt{403} if present \\
+3 & \tech{JwtExtractionFilter} & Validates Bearer JWTs, checks revoked token IDs (\texttt{jti}) against Redis, and forwards claims downstream \\
+4 & Upstream Routing & Evaluates Spring Cloud Gateway routes with Redis token-bucket rate limiting (\texttt{RequestRateLimiter}) \\
+5 & \tech{SentientGateFilter} & Global post-filter: measures execution latency, publishes to Kafka \texttt{USER\_LOGS}, and dispatches $4xx$/$5xx$ alerts to \texttt{SECURITY\_EVENTS} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsubsection{Management \& Metrics Controllers}
+The gateway exposes management APIs for security operators:
+\begin{itemize}[noitemsep]
+    \item \texttt{GET /api/mgmt/blacklist}: Lists active blacklist keys, block reasons, and remaining TTLs.
+    \item \texttt{POST /api/mgmt/blacklist}: Manually blocks a malicious UUID with custom TTL and reason.
+    \item \texttt{DELETE /api/mgmt/blacklist/\{uuid\}}: Immediately unblocks a client.
+    \item \texttt{GET /api/dashboard/metrics}: Exposes real-time throughput, active blocks, and service health metrics.
+\end{itemize}
+
+\subsection{MCPService: Malicious Client Protection Engine}
+
+\service{MCPService} functions as the analytical security brain. It consumes security alerts, fetches behavioral histories over gRPC, executes heuristic strategies, and interfaces with the AI service.
+
+\subsubsection{Layered Heuristic Strategies}
+\begin{center}
+\small
+\begin{tabular}{L{4.8cm} L{6.2cm} C{3.0cm}}
+\toprule
+\rowcolor{lightgray!60}
+\textbf{Threat Strategy} & \textbf{Inspection Logic} & \textbf{Enforcement Action} \\
+\midrule
+\tech{BurstTrafficStrategy} & Evaluates total requests in a sliding window; detects request spikes exceeding threshold & \critical{TTL: 15 min} \\
+\tech{PatternMatchStrategy} & Normalizes paths (URL decode, Unicode NFKC, SQL comment strip) and scans for SQLi, XSS, and Traversal & \critical{TTL: 60 min} \\
+\tech{SensitivePathStrategy} & Scans for unauthorized probes targeting \texttt{.env}, \texttt{/actuator}, \texttt{/admin}, \texttt{/wp-login} & \critical{TTL: 60 min} \\
+\tech{RateLimitCoolDownStrategy} & Detects clients repeatedly generating \texttt{429 Too Many Requests} violations & \critical{TTL: 15 min} \\
+\tech{HighErrorRateStrategy} & Calculates client failure ratio; triggers if $>50\%$ of recent requests result in errors & \critical{TTL: 15 min} \\
+\tech{AiAnomalyStrategy} & Contextual multi-factor LLM assessment of route hops, IP switches, and timing anomalies & \critical{TTL: 5--60 min} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsubsection{Resilience \& Fault Tolerance}
+External calls to the AI Service are wrapped using \tech{Resilience4j}:
+\begin{itemize}[noitemsep]
+    \item Sliding window of 10 calls with a 50\% failure threshold.
+    \item 10-second wait duration in Open state with automatic half-open transitions.
+    \item 2-second time limiter and 3 retry attempts for network disconnects.
+\end{itemize}
+
+\subsection{LoggingService: Persistence \& gRPC History Provider}
+
+\service{LoggingService} consumes the high-throughput \texttt{USER\_LOGS} Kafka topic and exposes historical logs to \service{MCPService}.
+
+\subsubsection{Storage Strategy Pattern}
+To resolve the trade-off between database write overhead and sub-millisecond retrieval, \service{LoggingService} implements a \tech{LogFetchStrategyResolver}:
+\begin{itemize}[noitemsep]
+    \item \tech{RedisFetchStrategy}: First checks Redis list \texttt{log:recent:\{uuid\}}, returning logs in sub-milliseconds.
+    \item \tech{DatabaseFetchStrategy}: Falls back to PostgreSQL table \texttt{gateway\_logs} on cache miss or for multi-hour audits.
+\end{itemize}
+
+\subsubsection{gRPC Server Implementation}
+Implemented in \tech{UserLogEventGrpcService.java}, the gRPC service serves protobuf-serialized request histories (\texttt{user\_log\_event.proto}) on port \texttt{9090}, slashing internal network serialization overhead by $>60\%$ compared to standard REST JSON.
+
+\subsection{AIService: On-Premise LLM Anomaly Scoring}
+
+\service{AIService} is a WebFlux microservice connecting directly to a local \tech{Ollama} instance running on the host or in a cluster pod:
+\begin{itemize}[leftmargin=*, itemsep=4pt]
+    \item \textbf{Dynamic Feature Engineering:} Calculates failure rates, request velocity per minute, route entropy, and IP hop counts from the incoming history list.
+    \item \textbf{Defensive Prompt Formatting:} Injects strictly validated numerical and structural features into an engineered system prompt, forcing the LLM to output pure JSON containing threat scores (0.0 to 1.0) and forensic justifications.
+    \item \textbf{Safe Fallback Parsing:} Enforces strict 5-second timeouts and numeric fail-safe parsing. If the LLM stutters or times out, it safely falls back to a score of \texttt{0.0}, preventing false positives.
+\end{itemize}
+
+\subsection{Sentinel Gateway UI: Real-Time Security Operations}
+
+The dashboard (\texttt{UI/sentinel-gateway-ui}) is built with \textbf{React 18, TypeScript, Vite, and Tailwind CSS}:
+\begin{itemize}[leftmargin=*, itemsep=4pt]
+    \item \textbf{Live Metric Gauges:} Displays requests per minute, blocked threat counts, P99 gateway latency, and microservice instance status.
+    \item \textbf{Architectural Pipeline Flow:} Interactive visual diagram representing live traffic streaming between Gateway, Kafka, MCP, and AI services.
+    \item \textbf{Threat Intelligence Ledger:} Live table of blocked UUIDs showing blocking reasons, severity levels, active TTL countdowns, and manual unblock actions.
+    \item \textbf{User Investigation Drawer:} Allows operators to click any UUID to inspect their historical request timeline, status distribution, and behavioral attributes.
+\end{itemize}
+
+% ════════════════════════════════════════════════════════
+%  PART IV: DEPLOYMENT & DEVOPS
+% ════════════════════════════════════════════════════════
+\newpage
+\section{DevOps, Cloud Infrastructure \& CI/CD}
+
+\subsection{Kubernetes Production Helm Chart (\texttt{k8s/})}
+
+SentientGate packages its entire cloud deployment into a production-ready Helm chart:
+\begin{itemize}[leftmargin=*, itemsep=4pt]
+    \item \textbf{Microservice Deployments:} Declarative deployments, Services, and Ingresses for \service{api-gateway}, \service{mcp-server}, \service{ai-service}, \service{logging-service}, \service{eureka-server}, and \service{sentinel-ui}.
+    \item \textbf{Stateful Infrastructure:} Pre-configured manifests for Apache Kafka (in KRaft mode), Redis, PostgreSQL, and Kafka-UI.
+    \item \textbf{Ingress Controllers:} NGINX Ingress configurations exposing public endpoints while shielding internal gRPC and MCP ports from external access.
+\end{itemize}
+
+\subsection{Terraform Infrastructure as Code (\texttt{terraform/})}
+
+The \texttt{terraform/} module provisions an enterprise-grade AWS environment:
+\begin{itemize}[leftmargin=*, itemsep=4pt]
+    \item \textbf{AWS VPC Module:} Provisions a dedicated VPC with public and private subnets across multiple Availability Zones, equipped with NAT Gateways for secure egress.
+    \item \textbf{Amazon EKS Cluster:} Deploys a managed Kubernetes cluster (v1.31) with autoscaling node groups and IAM OIDC integrations configured for GitHub Actions CI/CD deployment roles.
+\end{itemize}
+
+\subsection{Cross-Platform Automation Scripts (\texttt{scripts/})}
+
+Automated operations are maintained across operating systems in \texttt{scripts/linux/}, \texttt{scripts/macos/}, and \texttt{scripts/windows/}:
+\begin{itemize}[noitemsep]
+    \item \texttt{run\_local.*}: Spins up Docker infrastructure (Postgres, Redis, Kafka), validates health checks, boots Eureka, and launches all microservices.
+    \item \texttt{stop\_local.*}: Gracefully terminates local service processes and Docker containers.
+    \item \texttt{test\_local.*}: Sequentially executes integration and unit test suites across all Maven modules and frontend packages.
+    \item \texttt{build\_and\_push\_images.*}: Compiles native Docker containers and publishes images to Docker Hub.
+    \item \texttt{generate\_protos.*}: Compiles Protobuf schemas into generated Java gRPC classes.
+\end{itemize}
+
+\subsection{GitHub Actions Quality Gates (\texttt{.github/workflows/})}
+
+\begin{itemize}[leftmargin=*, itemsep=4pt]
+    \item \textbf{PR Validation Pipeline (\texttt{pr-validation.yml}):} Automatically triggers on pull requests targeting \texttt{main}. Boots containerized PostgreSQL, Redis, and Kafka services to run complete automated test suites across all services. Outdated PR runs are automatically canceled.
+    \item \textbf{Main CI/CD Pipeline (\texttt{ci-cd.yml}):} Triggers on direct pushes or merged PRs. Runs the full test suite first, and only on success builds and publishes multi-architecture Docker images to Docker Hub.
+    \item \textbf{Cloud Release Deploy (\texttt{release-deploy.yml}):} Deploys updated Helm charts directly to Amazon EKS clusters via temporary, non-committed secrets.
+\end{itemize}
+
+% ════════════════════════════════════════════════════════
+%  PART V: ROADMAP & FUTURE VISION
+% ════════════════════════════════════════════════════════
+\newpage
+\section{Strategic Roadmap \& Future Evolution}
+
+\subsection{Phase 1 — Kernel-Level eBPF / XDP Enforcement}
+Push Redis blacklist evaluations directly into the Linux kernel using \tech{eBPF} and \tech{XDP} (eXpress Data Path). Blacklisted packets will be dropped at the network interface card (NIC) level at wire speed, neutralizing volumetric DDoS before user-space context switches occur.
+
+\subsection{Phase 2 — RAG-Powered Threat Memory}
+Equip \service{AIService} with vector database capabilities using PostgreSQL's \tech{pgvector}. Historical attack vectors and multi-day distributed reconnaissance traces will be converted into embeddings, enabling the LLM to identify distributed, low-and-slow campaigns spanning weeks.
+
+\subsection{Phase 3 — Dynamic Honeytoken Trapping}
+Introduce automated honeytokens that dynamically inject decoy routes (e.g., hidden `/api/v2/internal-keys`) and false credentials into responses. Automated scrapers and fuzzers interacting with these honeytokens are immediately blacklisted with maximum severity.
+
+\subsection{Phase 4 — Service Mesh \& Envoy WebAssembly Filter}
+Package SentientGate's edge filter as an Envoy \tech{WebAssembly (Wasm)} plugin. This will allow the security fabric to deploy natively into Istio and Linkerd service meshes across multi-cloud enterprise topologies.
+
+\vfill
+
+% ─── Document Footer ──────────────────────────────────────────────────────────
+\begin{center}
+\textcolor{bordercolor}{\rule{0.8\linewidth}{0.5pt}}\\[6pt]
+\small\color{midgray}
+\textbf{SentientGate} — AI-Powered Runtime Security Fabric for Cloud-Native Microservices\\
+Author: Shrihari R. Kulkarni \textbullet\; License: Apache 2.0 \textbullet\; 2026\\[4pt]
+\texttt{\small\color{accentteal} Built to be adaptive. Designed to be private. Engineered to scale.}
+\end{center}
+
+\end{document}
