@@ -1,41 +1,46 @@
 ---
-name: Bug report
-about: Report a reproducible problem in SentientGate
+name: Bug Report
+about: Create a report to help us fix a bug in SentientGate
 title: "[Bug]: "
-labels: bug
+labels: ["bug"]
 assignees: ""
+
 ---
 
-## Environment
+## Microservice / Component Affected
+- [ ] ApiGateway
+- [ ] MCPService (Security Brain)
+- [ ] AIService (Ollama Anomaly Engine)
+- [ ] LoggingService & gRPC
+- [ ] EurekaServer
+- [ ] Sentinel Gateway UI (React)
+- [ ] Kubernetes / Helm Chart
+- [ ] Docker Compose / Scripts
+- [ ] Other (specify below)
 
+## Environment Details
 - **Operating system and version:**
-- **Docker version:**
-- **JDK version:**
-- **Node.js version (if applicable):**
-- **Affected service(s):** ApiGateway / MCPService / AIService / LoggingService / EurekaServer / Dummy / UI
+- **JDK Version:**
+- **Node.js Version (if applicable):**
+- **Docker Version:**
 
-## Steps to reproduce
-
+## Steps to Reproduce
 1.
 2.
 3.
 
-## Expected behavior
-
+## Expected Behavior
 Describe what you expected to happen.
 
-## Actual behavior
-
+## Actual Behavior
 Describe what happened instead.
 
-## Relevant logs
-
-Paste relevant, redacted logs below. Remove credentials, tokens, personal data, and other secrets.
+## Relevant Logs / Stacktrace
+Remove credentials, tokens, personal data, and other secrets before sharing logs.
 
 ```text
 
 ```
 
-## Additional context
-
-Add configuration details or screenshots that help explain the problem.
+## Additional Context
+Include relevant configuration, screenshots, or related issues.
