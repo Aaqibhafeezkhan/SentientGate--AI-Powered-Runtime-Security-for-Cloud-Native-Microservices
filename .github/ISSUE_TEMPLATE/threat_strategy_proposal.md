@@ -1,43 +1,43 @@
 ---
-name: Threat strategy proposal
-about: Propose a heuristic or detection strategy for MCPService
+name: Threat Strategy Proposal
+about: Propose a new runtime security heuristic or threat detection strategy
 title: "[Threat Strategy]: "
-labels: enhancement, security
+labels: ["enhancement", "security", "area/mcp"]
 assignees: ""
+
 ---
 
-## Threat or behavior to detect
+## Strategy Name
+(e.g., `SsrfDetectionStrategy`, `LdapInjectionStrategy`, `GeoAnomalyStrategy`)
 
-Describe the suspicious request pattern or attack behavior and the threat it represents.
+## Threat Classification
+- **Attack Vector:**
+- **CWE / OWASP Category:**
+- **Target Signals:** (e.g., URI path, query parameters, response status, header signatures)
 
-## Proposed heuristic
+## Proposed Heuristic Logic
+Explain the signals, conditions, thresholds, or scoring logic the strategy would use.
+- What patterns trigger a match?
+- How does it minimize false positives?
+- What legitimate traffic could match?
+- What bypasses or limitations should be considered?
 
-Explain the signals, conditions, thresholds, or scoring logic the strategy would use. Keep the proposal specific enough to review without requiring a full implementation.
-
-## Required context and data
-
+## Required Context and Data
 - **Request/event fields required:**
 - **Historical context required (if any):**
 - **Dependencies on LoggingService, Kafka, gRPC, Redis, or other components:**
 
-## Expected response
+## Recommended Enforcement Action
+- **Expected decision or response:**
+- **Suggested block duration / TTL (if applicable):**
+- **Reason code:**
+- **Severity level:** (LOW / MEDIUM / HIGH / CRITICAL)
 
-Describe the expected score, decision, or enforcement action, including any TTL-based blocking behavior if applicable.
-
-## False positives and bypasses
-
-- **Likely legitimate traffic that could match:**
-- **Known limitations or bypass scenarios:**
-- **Safeguards or tuning options:**
-
-## Validation plan
-
+## Validation Plan
 List representative positive and negative examples, test scenarios, or datasets that could validate the heuristic.
 
-## Architectural impact
+## Architectural Impact
+Identify affected services, performance considerations, and configuration or documentation changes.
 
-Identify affected services, performance considerations, and any configuration or documentation changes.
-
-## Additional context
-
+## Additional Context
 Link relevant references or related issues. Do not include live attack targets, secrets, or sensitive production data.
