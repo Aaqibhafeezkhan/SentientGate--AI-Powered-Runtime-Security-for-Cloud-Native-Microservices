@@ -20,7 +20,7 @@ public class OllamaService {
     private static final Pattern LABELED_SCORE =
             Pattern.compile("(?i)\\bscore\\s*[:=]\\s*(0(?:\\.\\d+)?|1(?:\\.0+)?)");
     private static final Pattern BOUNDED_SCORE =
-            Pattern.compile("(?<![\\d.])(?:0(?:\\.\\d+)?|1(?:\\.0+)?)(?![\\d.])");
+            Pattern.compile("(?<![\\d.])(0(?:\\.\\d+)?|1(?:\\.0+)?)(?![\\d.])");
 
     private final WebClient webClient;
     private final String defaultModel;
