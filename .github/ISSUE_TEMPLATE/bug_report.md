@@ -3,7 +3,7 @@ name: Bug Report
 about: Create a report to help us fix a bug in SentientGate
 title: "[Bug]: "
 labels: ["bug"]
-assignees: ''
+assignees: ""
 
 ---
 
@@ -16,25 +16,31 @@ assignees: ''
 - [ ] Sentinel Gateway UI (React)
 - [ ] Kubernetes / Helm Chart
 - [ ] Docker Compose / Scripts
+- [ ] Other (specify below)
 
 ## Environment Details
-- **OS**: (e.g. Ubuntu 22.04, macOS Sonoma, Windows 11)
-- **JDK Version**: (e.g. OpenJDK 21.0.2)
-- **Node.js Version**: (e.g. Node 20.11)
-- **Docker Version**: (e.g. 25.0)
+- **Operating system and version:**
+- **JDK Version:**
+- **Node.js Version (if applicable):**
+- **Docker Version:**
 
 ## Steps to Reproduce
-1. Start infrastructure via `...`
-2. Launch service `...`
-3. Execute request / trigger flow `...`
+1.
+2.
+3.
 
 ## Expected Behavior
-A clear and concise description of what you expected to happen.
+Describe what you expected to happen.
 
 ## Actual Behavior
-A clear and concise description of what actually happened.
+Describe what happened instead.
 
 ## Relevant Logs / Stacktrace
+Remove credentials, tokens, personal data, and other secrets before sharing logs.
+
 ```text
-Paste microservice logs or stack traces here
+
 ```
+
+## Additional Context
+Include relevant configuration, screenshots, or related issues.

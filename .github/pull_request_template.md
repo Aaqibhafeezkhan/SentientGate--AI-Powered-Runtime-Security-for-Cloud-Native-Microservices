@@ -1,14 +1,15 @@
-## Description
-A concise summary of what this PR does and the problem it solves.
+## Summary
+Describe what changed and why.
 
-Fixes #(issue number)
+## Linked issue
+Fixes #
 
 ## Type of Change
-- [ ] Bug fix (non-breaking change fixing an issue)
-- [ ] New feature (non-breaking change adding functionality)
-- [ ] Breaking change (fix or feature that causes existing functionality to not work as expected)
+- [ ] Bug fix
+- [ ] New feature
+- [ ] Breaking change
 - [ ] Documentation update
-- [ ] Performance / Refactoring improvement
+- [ ] Performance / refactoring improvement
 - [ ] Testing / CI addition
 
 ## Affected Microservices & Components
@@ -17,20 +18,22 @@ Fixes #(issue number)
 - [ ] AIService (Ollama inference)
 - [ ] LoggingService (Persistence & gRPC)
 - [ ] EurekaServer
-- [ ] Sentinel Gateway UI (React)
-- [ ] Helm Chart / Kubernetes
-- [ ] Docker Compose / Scripts
+- [ ] Sentinel Gateway UI
+- [ ] Infrastructure / Helm / Docker
+- [ ] Documentation only
 
-## Verification & Testing
-Describe the tests you ran to verify your changes:
-- [ ] Unit tests added / updated (`mvn test`)
-- [ ] Full local suite passed (`./scripts/<os>/test_local.sh`)
-- [ ] UI build and lint passed (`npm run lint && npm run build`)
-- [ ] Manual verification via curl or browser
+## Verification
+- [ ] Relevant unit tests added or updated
+- [ ] Relevant integration tests added or updated
+- [ ] UI build and lint checked where applicable
+- [ ] Manual verification performed where applicable
+- [ ] Documentation or configuration updated where needed
 
 ## Checklist
-- [ ] My code adheres to the style guidelines of this project
-- [ ] I have performed a self-review of my code
-- [ ] I have commented my code where necessary, particularly in hard-to-understand areas
-- [ ] I have updated documentation or relevant READMEs
-- [ ] My changes generate no new warnings or build errors
+- [ ] I have performed a self-review
+- [ ] I have followed the project's style guidelines
+- [ ] No secrets, credentials, or sensitive production data are included
+- [ ] Related documentation has been updated where needed
+
+## Review Notes
+Call out architectural, security, compatibility, or deployment considerations reviewers should know.
